@@ -1,8 +1,13 @@
 package com.rover
 
-class RoverInstructionsCommand(val rover: Rover, val instructions: String) {
+import com.rover.infrastructure.parse
+import com.rover.model.Instruction
+import com.rover.model.Rover
+
+class RoverInstructionsCommand(val rover: Rover, val instructionLine: String) {
     fun run(): Rover {
-        return rover
+        val instructions = parse(instructionLine)
+         return rover
     }
 
 }

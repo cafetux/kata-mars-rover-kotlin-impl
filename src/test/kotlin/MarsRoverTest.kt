@@ -1,7 +1,7 @@
-import com.rover.Orientation
-import com.rover.Orientation.NORTH
-import com.rover.Orientation.WEST
-import com.rover.Rover
+import com.rover.model.Orientation
+import com.rover.model.Orientation.NORTH
+import com.rover.model.Orientation.WEST
+import com.rover.model.Rover
 import com.rover.RoverInstructionsCommand
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
