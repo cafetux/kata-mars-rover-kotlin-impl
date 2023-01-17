@@ -1,6 +1,6 @@
 package com.rover.infrastructure
 
-import com.rover.model.Instruction.*
+import com.rover.model.command.Instruction.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

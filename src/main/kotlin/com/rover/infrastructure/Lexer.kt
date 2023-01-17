@@ -1,6 +1,6 @@
 package com.rover.infrastructure
 
-import com.rover.model.Instruction
+import com.rover.model.command.Instruction
 
 fun parse(instructions: String): List<Instruction> {
     return instructions.toCharArray()

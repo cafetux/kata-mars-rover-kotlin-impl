@@ -1,11 +1,16 @@
 package com.rover.model
 
+import com.rover.model.map.Position
+import com.rover.model.rover.Orientation
+import com.rover.model.rover.Rover
+import com.rover.model.rover.moveBackward
+import com.rover.model.rover.moveForward
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class RoverMovesKtTest {
 
-    lateinit var actualRover:Rover
+    lateinit var actualRover: Rover
 
     @Test
     fun `should move positive on Y when move forward oriented NORTH`(){

@@ -1,7 +1,11 @@
 package com.rover
 
 import com.rover.infrastructure.parse
-import com.rover.model.*
+import com.rover.model.command.Instruction
+import com.rover.model.map.PlanetMap
+import com.rover.model.rover.Rover
+import com.rover.model.rover.moveBackward
+import com.rover.model.rover.moveForward
 
 class RoverInstructionsCommand(private val rover: Rover, private val instructionLine: String, private val map: PlanetMap) {
     fun run(): List<RoverEvent> {

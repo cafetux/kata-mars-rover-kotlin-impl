@@ -1,4 +1,4 @@
-package com.rover.model
+package com.rover.model.rover
 
 enum class Orientation {
     NORTH {

@@ -1,4 +1,4 @@
-package com.rover.model
+package com.rover.model.map
 
 class PlanetMap(private val obstacles: List<Position>) {
 

@@ -1,4 +1,6 @@
-package com.rover.model
+package com.rover.model.rover
+
+import com.rover.model.map.Position
 
 
 fun moveForward(rover: Rover): Rover = when (rover.orientation) {
