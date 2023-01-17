@@ -3,6 +3,7 @@ import com.rover.model.Orientation.NORTH
 import com.rover.model.Orientation.WEST
 import com.rover.model.Rover
 import com.rover.RoverInstructionsCommand
+import com.rover.model.PlanetMap
 import com.rover.model.Position
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -48,7 +49,7 @@ class MarsRoverTest {
     }
 
     private fun when_rover_receive_instructions(instructions: String) {
-        this.result = RoverInstructionsCommand(this.rover, instructions, obstacles).run()
+        this.result = RoverInstructionsCommand(this.rover, instructions, PlanetMap(obstacles)).run()
     }
 
     private fun given_a_rover_at_initial_position(initialX: Int, initialY: Int, orientation: Orientation) {

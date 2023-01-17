@@ -3,14 +3,14 @@ package com.rover
 import com.rover.infrastructure.parse
 import com.rover.model.*
 
-class RoverInstructionsCommand(private val rover: Rover, private val instructionLine: String, private val obstacles: List<Position>) {
+class RoverInstructionsCommand(private val rover: Rover, private val instructionLine: String, private val map: PlanetMap) {
     fun run(): Rover {
         val instructions = parse(instructionLine)
         return instructions
             .map { toMovement(it) }
             .fold(rover) { acc, movement ->
                 val nextPosition = movement(acc)
-                if(obstacles.contains(nextPosition.position)){
+                if(map.hasObstacle(nextPosition.position)){
                    return acc
                 }
                 nextPosition
