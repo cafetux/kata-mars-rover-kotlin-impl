@@ -43,9 +43,8 @@ class MarsRoverTest {
 
 
     private fun then_rover_is_finally_at_position(expectedX: Int, expectedY: Int, expectedOrientation: Orientation) {
-        assertThat(this.result.positionX).`as`("Rover X position").isEqualTo(expectedX)
-        assertThat(this.result.positionY).`as`("Rover Y position").isEqualTo(expectedY)
-        assertThat(this.result.orientation).`as`("Rover Orientation").isEqualTo(expectedOrientation)
+        assertThat(this.result.position).`as`("Rover position should be").isEqualTo(Position(expectedX, expectedY))
+        assertThat(this.result.orientation).`as`("Rover Orientation should be").isEqualTo(expectedOrientation)
     }
 
     private fun when_rover_receive_instructions(instructions: String) {
@@ -53,7 +52,7 @@ class MarsRoverTest {
     }
 
     private fun given_a_rover_at_initial_position(initialX: Int, initialY: Int, orientation: Orientation) {
-        this.rover = Rover(initialX, initialY, orientation)
+        this.rover = Rover(Position(initialX, initialY), orientation)
     }
 
 }

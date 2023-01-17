@@ -1,3 +1,3 @@
 package com.rover.model
 
-data class Rover(val positionX: Int, val positionY: Int, val orientation: Orientation)
+data class Rover(val position: Position, val orientation: Orientation)
