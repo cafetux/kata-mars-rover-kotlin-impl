@@ -1,17 +1,20 @@
 package com.rover
 
 import com.rover.infrastructure.parse
-import com.rover.model.Instruction
-import com.rover.model.Rover
-import com.rover.model.moveBackward
-import com.rover.model.moveForward
+import com.rover.model.*
 
-class RoverInstructionsCommand(val rover: Rover, val instructionLine: String) {
+class RoverInstructionsCommand(val rover: Rover, val instructionLine: String, val obstacles: List<Position>) {
     fun run(): Rover {
         val instructions = parse(instructionLine)
         return instructions
             .map { toMovement(it) }
-            .fold(rover) { acc, movement -> movement(acc) }
+            .fold(rover) { acc, movement ->
+                val nextPosition = movement(acc)
+                if(obstacles.contains(Position(nextPosition.positionX, nextPosition.positionY))){
+                   return acc
+                }
+                nextPosition
+            }
     }
 
     private fun toMovement(it: Instruction) = when (it) {
