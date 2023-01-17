@@ -14,11 +14,11 @@ class RoverInstructionsCommand(private val rover: Rover, private val instruction
             .map { toMovement(it) }
             .fold(rover) { acc, movement ->
                 val nextRover = movement(acc)
-                val nextPosition = map.replaceIfOutside(nextRover.position)
-                if (map.hasObstacle(nextPosition)) {
-                    return listOf(RoverEvent.NewRoverPosition(acc), RoverEvent.ObstacleEncountered(nextPosition))
+                val adjustedNextPosition = map.replaceIfOutside(nextRover.position)
+                if (map.hasObstacle(adjustedNextPosition)) {
+                    return listOf(RoverEvent.NewRoverPosition(acc), RoverEvent.ObstacleEncountered(adjustedNextPosition))
                 }
-                Rover(nextPosition, nextRover.orientation)
+                Rover(adjustedNextPosition, nextRover.orientation)
             }
         return listOf(RoverEvent.NewRoverPosition(roverFinal))
     }
