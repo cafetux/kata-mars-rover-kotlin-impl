@@ -4,17 +4,18 @@ import com.rover.infrastructure.parse
 import com.rover.model.*
 
 class RoverInstructionsCommand(private val rover: Rover, private val instructionLine: String, private val map: PlanetMap) {
-    fun run(): Rover {
+    fun run(): List<RoverEvent> {
         val instructions = parse(instructionLine)
-        return instructions
+        val roverFinal = instructions
             .map { toMovement(it) }
             .fold(rover) { acc, movement ->
                 val nextPosition = movement(acc)
-                if(map.hasObstacle(nextPosition.position)){
-                   return acc
+                if (map.hasObstacle(nextPosition.position)) {
+                    return listOf(RoverEvent.NewRoverPosition(acc), RoverEvent.ObstacleEncountered(nextPosition.position))
                 }
                 nextPosition
             }
+        return listOf(RoverEvent.NewRoverPosition(roverFinal))
     }
 
     private fun toMovement(it: Instruction) = when (it) {
