@@ -50,6 +50,21 @@ class MarsRoverTest {
 
         then_rover_is_finally_at_position(10, 6, NORTH)
     }
+    @Test
+    fun `should not process instructions when command contains invalid command`() {
+
+        given_a_rover_at_initial_position(10, 10, NORTH)
+
+        when_rover_receive_instructions("FF?FFF")
+
+        then_rover_notify_we_encounter_invalid_command("?")
+        then_rover_is_finally_at_position(10, 10, NORTH)
+    }
+
+    private fun then_rover_notify_we_encounter_invalid_command(expectedInvalidCommand: String) {
+        val actualInvalidCommand = this.result.filterIsInstance<RoverEvent.InvalidCommand>().toList()[0].command
+        assertThat(actualInvalidCommand).isEqualTo(expectedInvalidCommand)
+    }
 
     private fun and_given_map_link_between(outOfMapPosition: Position, destination: Position) {
         edgeLinks = edgeLinks + Pair(outOfMapPosition, destination)
